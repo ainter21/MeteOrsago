@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MeteOrsago</string>
+    <string name="webcam_image_content_description">webcam_image</string>
+</resources>
