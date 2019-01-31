@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">MeteOrsago</string>
     <string name="webcam_image_content_description">webcam_image</string>
+    <string name="ext_temp">Temperatura esterna</string>
+    <string name="wind">Velocità del vento</string>
+    <string name="int_temp">Temperatura interna</string>
+    <string name="press">Pressione</string>
+    <string name="int_hum">Umidità interna</string>
+    <string name="ext_hum">Umidità esterna</string>
+    <string name="daily_rain">Pioggia giornaliera</string>
+    <string name="wind_temp">Temperatura del vento</string>
+    <string name="hour_rain">Pioggia ultim\'ora</string>
+    <string name="rug_temp">Temperatura rugiada</string>
+    <string name="year_rain">Pioggia annua</string>
+    <string name="max_temp">Temperatura esterna massima</string>
+    <string name="min_temp">Temperatura esterna minima</string>
+    <string name="max_wind">Velocità del vento massima</string>
+    <string name="feel_temp">Temperatura percepita</string>
+    <string name="data_placeholder">10 Km/h</string>
 </resources>
