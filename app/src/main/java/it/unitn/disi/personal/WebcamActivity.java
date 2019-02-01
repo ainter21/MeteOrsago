@@ -1,19 +1,22 @@
 package it.unitn.disi.personal;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+
+import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import com.github.chrisbanes.photoview.PhotoView;
+
 
 public class WebcamActivity extends AppCompatActivity {
 
 
-    ImageView webcamImageView;
-    Toolbar toolbar;
+    PhotoView webcamImageView;
+
+
+
 
     private final String WEBCAM_URL  = "http://meteorsago.altervista.org/swpi/raspimg.php";
     @Override
@@ -26,7 +29,13 @@ public class WebcamActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Webcam");
         webcamImageView = findViewById(R.id.iv_webcam);
 
-        Glide.with(this).load(WEBCAM_URL).into(webcamImageView);
+
+        loadWebcam();
+
+
+
+
+
     }
 
 
@@ -35,8 +44,31 @@ public class WebcamActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             onBackPressed();
+        }else if(id==R.id.refresh){
+            loadWebcam();
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.refresh, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.webcam);
+        menuItem.setVisible(false);
+        return true;
+    }
+
+    private void loadWebcam(){
+        Glide.with(this).load(WEBCAM_URL).into(webcamImageView);
+    }
+
+
+
+
+
 }
