@@ -19,4 +19,8 @@
     <string name="data_placeholder">10 Km/h</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="last_measure_time">Ultimo aggiornamento</string>
+    <string name="rate_us">Feedback!</string>
+    <string name="lightning">Mappa Fulmini</string>
+    <string name="website">Sito Web</string>
 </resources>

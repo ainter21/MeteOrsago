@@ -109,6 +109,10 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
                 try {
 
+
+                    weatherData.add(new WeatherData(getResources().getString(R.string.last_measure_time),
+                            response.getString("last_measure_time")));
+
                     weatherData.add(new WeatherData(getResources().getString(R.string.ext_temp),
                             String.format("%.1f", response.getDouble("temp_out")) + " °C"));
                     weatherData.add(new WeatherData(getResources().getString(R.string.int_temp),
@@ -118,9 +122,17 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             + response.getString("wind_dir_code")));
                     weatherData.add(new WeatherData(getResources().getString(R.string.wind_temp),
                             String.format("%.1f", response.getDouble("wind_chill")) + " °C"));
+                    int trend;
+                    if (response.getDouble("pressure_trend") > 0){
+                        trend = 1;
+                    }else if (response.getDouble("pressure_trend") == 0){
+                        trend = 0;
+                    }else {
+                        trend = -1;
+                    }
                     weatherData.add(new WeatherData(getResources().getString(R.string.press),
                             String.format("%.2f", response.getDouble("rel_pressure"))
-                            + " hPa" + (response.getDouble("pressure_trend") >= 0 ? " ↑" : " ↓") ));
+                            + " hPa", trend));
                     weatherData.add(new WeatherData(getResources().getString(R.string.ext_hum),
                             String.format("%.1f", response.getDouble("hum_out")) + " %" ));
                     weatherData.add(new WeatherData(getResources().getString(R.string.int_hum),
@@ -141,7 +153,8 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     weatherData.add(new WeatherData(getResources().getString(R.string.max_wind),
                             String.format("%.1f", response.getDouble("winDayMax")) + " Km/h"));
                     weatherData.add(new WeatherData(getResources().getString(R.string.feel_temp),
-                            String.format("%.2f", response.getDouble("temp_apparent")) + " °C"));
+                            String.format("%.1f", response.getDouble("temp_apparent")) + " °C"));
+
 
 
                 } catch (JSONException e) {
@@ -165,9 +178,9 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         requestQueue.add(jsonObjectRequest);
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.refresh);
-        item.setVisible(false);
-    }
+//    @Override
+//    public void onPrepareOptionsMenu(Menu menu) {
+//        MenuItem item=menu.findItem(R.id.refresh);
+//        item.setVisible(false);
+//    }
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -76,12 +77,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.refresh, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//
+//        getMenuInflater().inflate(R.menu.refresh, menu);
+//        return true;
+//    }
 
 
     @Override
@@ -108,6 +109,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_webcam:
 //                Toast.makeText(this, String.valueOf(R.id.nav_webcam), Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WebcamFragment()).commit();
+                break;
+            case R.id.nav_website:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://meteorsago.altervista.org/swpi/"));
+                startActivity(browserIntent);
+                break;
+            case R.id.nav_rate_us:
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                String uriText = "mailto:" + Uri.encode("ainter21.6@gmail.com") +
+                        "?subject=" + Uri.encode("Feedback!");
+                Uri uri = Uri.parse(uriText);
+
+                intent.setData(uri);
+                startActivity(intent);
+                break;
+            case R.id.nav_lightning:
+                Intent lightningIntent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://it.blitzortung.org/live_dynamic_maps2.php?map=10"));
+                startActivity(lightningIntent);
                 break;
 
         }

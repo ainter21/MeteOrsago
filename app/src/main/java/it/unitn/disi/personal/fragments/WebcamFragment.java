@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import androidx.annotation.NonNull;
@@ -45,8 +46,9 @@ public class WebcamFragment extends Fragment {
 
     private void loadWebcam(){
         Glide.with(this).load(WEBCAM_URL)
-                .apply(RequestOptions.skipMemoryCacheOf(true))
-                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
+//                .apply(RequestOptions.skipMemoryCacheOf(true))
+//                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
+                .apply(RequestOptions.signatureOf(new ObjectKey(String.valueOf(System.currentTimeMillis()))))
                 .into(webcamImageView);
     }
 
@@ -55,6 +57,7 @@ public class WebcamFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.refresh){
+            webcamImageView.setImageResource(R.drawable.ic_launcher_background);
             loadWebcam();
         }
         return true;
