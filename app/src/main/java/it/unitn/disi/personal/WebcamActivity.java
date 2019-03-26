@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 
 
@@ -64,7 +66,10 @@ public class WebcamActivity extends AppCompatActivity {
     }
 
     private void loadWebcam(){
-        Glide.with(this).load(WEBCAM_URL).into(webcamImageView);
+        Glide.with(this).load(WEBCAM_URL)
+                .apply(RequestOptions.skipMemoryCacheOf(true))
+                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
+                .into(webcamImageView);
     }
 
 
