@@ -55,15 +55,15 @@ public class WebcamActivity extends AppCompatActivity {
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.refresh, menu);
-
-        MenuItem menuItem = menu.findItem(R.id.webcam);
-        menuItem.setVisible(false);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//
+//        getMenuInflater().inflate(R.menu.refresh, menu);
+//
+//        MenuItem menuItem = menu.findItem(R.id.webcam);
+//        menuItem.setVisible(false);
+//        return true;
+//    }
 
     private void loadWebcam(){
         Glide.with(this).load(WEBCAM_URL)

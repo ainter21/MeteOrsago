@@ -17,4 +17,6 @@
     <string name="max_wind">Velocità del vento massima</string>
     <string name="feel_temp">Temperatura percepita</string>
     <string name="data_placeholder">10 Km/h</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 </resources>

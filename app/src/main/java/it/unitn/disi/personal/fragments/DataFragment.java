@@ -3,6 +3,8 @@ package it.unitn.disi.personal.fragments;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,6 +74,8 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 loadRecyclerViewData();
             }
         });
+        setHasOptionsMenu(true);
+
 
         return v;
     }
@@ -158,5 +163,11 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         requestQueue = Volley.newRequestQueue(getContext());
 
         requestQueue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.refresh);
+        item.setVisible(false);
     }
 }

@@ -2,10 +2,18 @@ package it.unitn.disi.personal;
 
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import it.unitn.disi.personal.fragments.DataFragment;
+import it.unitn.disi.personal.fragments.WebcamFragment;
 
 import android.util.Log;
 import android.view.Menu;
@@ -20,61 +28,51 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-//    TextView extTempTextView;
-//    TextView windTextView;
-//    TextView intTempTextView;
-//    TextView pressureTextView;
-//    TextView intHumTextView;
-//    TextView extHumTextView;
-//    TextView dailyRainTextView;
-//    TextView windTempTextView;
-//    TextView hourRainTextView;
-//    TextView rugTempTextView;
-//    TextView yearRainTextView;
-//    TextView maxTempTextView;
-//    TextView minTempTextView;
-//    TextView maxWindTextView;
-//    TextView feelTempTextView;
-
+    DrawerLayout drawerLayout;
     Toolbar toolbar;
 
     private static final String TAG = "MainActivity";
-    private final String WEBCAM_URL  = "http://meteorsago.altervista.org/swpi/raspimg.php";
+    //private final String WEBCAM_URL = "http://meteorsago.altervista.org/swpi/raspimg.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                menuItem.setChecked(true);
+                drawerLayout.closeDrawers();
 
+                return true;
+            }
+        });
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        extTempTextView = findViewById(R.id.tv_ext_temp);
-//        windTextView = findViewById(R.id.tv_wind);
-//        intTempTextView = findViewById(R.id.tv_int_temp);
-//        pressureTextView = findViewById(R.id.tv_press);
-//        intHumTextView = findViewById(R.id.tv_int_hum);
-//        extHumTextView = findViewById(R.id.tv_ext_hum);
-//        dailyRainTextView = findViewById(R.id.tv_daily_rain);
-//        windTempTextView = findViewById(R.id.tv_wind_temp);
-//        hourRainTextView = findViewById(R.id.tv_hour_rain);
-//        rugTempTextView = findViewById(R.id.tv_rug_temp);
-//        yearRainTextView = findViewById(R.id.tv_year_temp);
-//        maxTempTextView = findViewById(R.id.tv_max_temp);
-//        minTempTextView = findViewById(R.id.tv_min_temp);
-//        maxWindTextView = findViewById(R.id.tv_max_wind);
-//        feelTempTextView = findViewById(R.id.tv_feel_temp);
-
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataFragment()).commit();
 
-//        loadData();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_data);
+
 
     }
 
@@ -88,18 +86,43 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if(id==R.id.refresh){
-//            loadData();
-        }else if(id == R.id.webcam){
-            Intent intent = new Intent(MainActivity.this, WebcamActivity.class);
-            startActivity(intent);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+//        Toast.makeText(this, "entro", Toast.LENGTH_SHORT).show();
+        drawerLayout.closeDrawers();
+        int itemId = menuItem.getItemId();
+
+        switch (itemId) {
+            case R.id.nav_data:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataFragment()).commit();
+                break;
+            case R.id.nav_webcam:
+//                Toast.makeText(this, String.valueOf(R.id.nav_webcam), Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WebcamFragment()).commit();
+                break;
+
+        }
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else{
+            super.onBackPressed();
+        }
+    }
 
 
 }
