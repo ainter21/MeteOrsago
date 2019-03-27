@@ -37,6 +37,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_menu"
-        app:headerLayout="@layout/nav_header"/>
+        app:headerLayout="@layout/nav_header"
+        app:itemTextAppearance="@font/roboto_light"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import it.unitn.disi.personal.fragments.DataFragment;
+import it.unitn.disi.personal.fragments.HomeFragment;
 import it.unitn.disi.personal.fragments.WebcamFragment;
 
 import android.util.Log;
@@ -65,24 +66,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_data);
+        navigationView.setCheckedItem(R.id.nav_home);
 
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        getMenuInflater().inflate(R.menu.refresh, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.info, menu);
+        return true;
+    }
 
 
     @Override
@@ -91,6 +92,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.info:
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                startActivity(intent);
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -103,6 +109,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int itemId = menuItem.getItemId();
 
         switch (itemId) {
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                break;
             case R.id.nav_data:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataFragment()).commit();
                 break;
@@ -116,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_rate_us:
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
-                String uriText = "mailto:" + Uri.encode("ainter21.6@gmail.com") +
+                String uriText = "mailto:" + Uri.encode("alberto.giust21@gmail.com") +
                         "?subject=" + Uri.encode("Feedback!");
                 Uri uri = Uri.parse(uriText);
 

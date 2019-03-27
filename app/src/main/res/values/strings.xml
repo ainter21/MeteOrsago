@@ -23,4 +23,12 @@
     <string name="rate_us">Feedback!</string>
     <string name="lightning">Mappa Fulmini</string>
     <string name="website">Sito Web</string>
+    <string name="weather_icon">Weather Icon</string>
+    <string name="cd_trend">Trend</string>
+    <string name="info">Info</string>
+    <string name="creator">Sviluppatore: Alberto Giust</string>
+    <string name="bio">Sono uno studente di informatica all\'Università degli Studi Di Trento (TN). Tra i tanti linguaggi che destreggio c\'è sicuramente Java e sviluppare applicazioni Android è sicuramente un ottimo modo per sfruttarlo.</string>
+    <string name="contact_me">Contattami</string>
+    <string name="email">alberto.giust21@gmail.com</string>
+    <string name="phone">+393425054003</string>
 </resources>
