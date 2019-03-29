@@ -60,9 +60,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             firstTime.edit().putBoolean("my_first_time", false).commit();
             NetworkUtils.callCounter(this, "https://meteorsago-server.herokuapp.com/newUser");
-        }else {
-            NetworkUtils.callCounter(this, "https://meteorsago-server.herokuapp.com/newAccess");
         }
+        NetworkUtils.callCounter(this, "https://meteorsago-server.herokuapp.com/newAccess");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
