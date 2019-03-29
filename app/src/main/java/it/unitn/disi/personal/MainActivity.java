@@ -7,12 +7,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import it.unitn.disi.personal.Utils.NetworkUtils;
 import it.unitn.disi.personal.fragments.DataFragment;
 import it.unitn.disi.personal.fragments.HomeFragment;
 import it.unitn.disi.personal.fragments.WebcamFragment;
@@ -45,10 +47,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final String TAG = "MainActivity";
     //private final String WEBCAM_URL = "http://meteorsago.altervista.org/swpi/raspimg.php";
 
+    final String FIRST_TIME_PREFS = "FirstTimePrefs";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences firstTime = getSharedPreferences(FIRST_TIME_PREFS,MODE_PRIVATE);
+
+        if(firstTime.getBoolean("my_first_time", true)){
+
+            firstTime.edit().putBoolean("my_first_time", false).commit();
+            NetworkUtils.callCounter(this, "https://meteorsago-server.herokuapp.com/newUser");
+        }else {
+            NetworkUtils.callCounter(this, "https://meteorsago-server.herokuapp.com/newAccess");
+        }
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -151,5 +165,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+
+    }
 }
