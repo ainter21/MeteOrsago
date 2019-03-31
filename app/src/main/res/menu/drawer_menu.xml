@@ -18,10 +18,13 @@
             android:title="Webcam"
             ></item>
 
+
     </group>
 
     <group
-        android:id="@+id/utilities">
+        android:id="@+id/websites"
+        android:checkableBehavior="single">
+
 
         <item
             android:id="@+id/nav_website"
@@ -32,6 +35,16 @@
             android:id="@+id/nav_lightning"
             android:icon="@drawable/ic_lightning"
             android:title="@string/lightning"></item>
+
+        <item
+            android:id="@+id/nav_protezione_civile"
+            android:icon="@drawable/ic_protezione_civile"
+            android:title="Protezione Civile"></item>
+    </group>
+    <group
+        android:id="@+id/utilities">
+
+
 
         <item android:id="@+id/nav_rate_us"
             android:title="@string/rate_us"

@@ -17,26 +17,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import it.unitn.disi.personal.Utils.NetworkUtils;
 import it.unitn.disi.personal.fragments.DataFragment;
 import it.unitn.disi.personal.fragments.HomeFragment;
+import it.unitn.disi.personal.fragments.WebPageFragment;
 import it.unitn.disi.personal.fragments.WebcamFragment;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ImageView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
-
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -65,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        //setto imageview sull headere della navigation view
+        View v = navigationView.getHeaderView(0);
+        ImageView headerImageView = (ImageView) v.findViewById(R.id.iv_nav_header);
+        Glide.with(this).load(R.drawable.slideshow1).into(headerImageView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -133,8 +129,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WebcamFragment()).commit();
                 break;
             case R.id.nav_website:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://meteorsago.altervista.org/swpi/"));
-                startActivity(browserIntent);
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://meteorsago.altervista.org/swpi/"));
+//                startActivity(browserIntent);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://meteorsago.altervista.org/swpi/")).commit();
                 break;
             case R.id.nav_rate_us:
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
@@ -146,9 +143,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_lightning:
-                Intent lightningIntent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://it.blitzortung.org/live_dynamic_maps2.php?map=10"));
-                startActivity(lightningIntent);
+//                Intent lightningIntent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://it.blitzortung.org/live_dynamic_maps2.php?map=10"));
+//                startActivity(lightningIntent);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://map.blitzortung.org/#8.45/45.852/12.485")).commit();
                 break;
+            case R.id.nav_protezione_civile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://www.centrometeo.com/situazione-tempo-reale/radar/4653-immagine-radar-protezione-civile")).commit();
+
 
         }
         return true;

@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +57,17 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
         lastUpdateTextView = v.findViewById(R.id.tv_last_update);
-        int images[]  = {R.drawable.orsago_centro_placeholder,R.drawable.comune_orsago_placeholder};
+        int images[]  = {
+                R.drawable.slideshow1,
+                R.drawable.slideshow2,
+                R.drawable.slideshow3,
+                R.drawable.slideshow4,
+                R.drawable.slideshow5,
+                R.drawable.slideshow6,
+                R.drawable.slideshow7,
+                R.drawable.slideshow8,
+                R.drawable.slideshow9
+        };
         viewFlipper = v.findViewById(R.id.vf_slideshow);
 
         for(int i = 0; i <images.length; i++){
@@ -189,7 +200,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     public void flipperImages(int image){
 
         ImageView imageView = new ImageView(getContext());
-        imageView.setBackgroundResource(image);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        Glide.with(this).load(image).into(imageView);
+//        imageView.setBackgroundResource(image);
 
         viewFlipper.addView(imageView);
         viewFlipper.setFlipInterval(4000);
