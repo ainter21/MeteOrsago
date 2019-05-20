@@ -138,9 +138,9 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     weatherData.add(new WeatherData(getResources().getString(R.string.int_hum),
                             String.format("%.1f", response.getDouble("hum_in")) + " %"));
                     weatherData.add(new WeatherData(getResources().getString(R.string.daily_rain),
-                            String.format("%.1f", response.getDouble("rain_rate_24h")) + " mm"));
-                    weatherData.add(new WeatherData(getResources().getString(R.string.hour_rain),
                             String.format("%.1f", response.getDouble("rain_rate")) + " mm"));
+                    weatherData.add(new WeatherData(getResources().getString(R.string.hour_rain),
+                            String.format("%.1f", response.getDouble("rain_rate_1h")) + " mm"));
                     weatherData.add(new WeatherData(getResources().getString(R.string.rug_temp),
                             String.format("%.1f", response.getDouble("dew_point")) + " °C"));
                     weatherData.add(new WeatherData(getResources().getString(R.string.year_rain),

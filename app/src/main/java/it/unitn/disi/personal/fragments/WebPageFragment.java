@@ -17,6 +17,7 @@ public class WebPageFragment extends Fragment {
 
     WebView lightningMapWebView;
     String url;
+    boolean needZoom;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,16 +31,20 @@ public class WebPageFragment extends Fragment {
         lightningMapWebView.setWebViewClient(new WebViewClient());
         lightningMapWebView.loadUrl(url);
         WebSettings webSettings = lightningMapWebView.getSettings();
-        webSettings.setBuiltInZoomControls(true);
-        lightningMapWebView.setInitialScale(100);
+
+        if(needZoom) {
+            lightningMapWebView.setInitialScale(100);
+            webSettings.setBuiltInZoomControls(true);
+        }
         webSettings.setJavaScriptEnabled(true);
         return v;
     }
-    public static WebPageFragment newInstance(String url) {
+    public static WebPageFragment newInstance(String url, boolean needZoom) {
 
         Bundle bundle = new Bundle();
 
         bundle.putString("url", url);
+        bundle.putBoolean("needZoom", needZoom);
 
         WebPageFragment webPageFragment = new WebPageFragment();
         webPageFragment.setArguments(bundle);
@@ -50,6 +55,7 @@ public class WebPageFragment extends Fragment {
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
             url = bundle.getString("url");
+            needZoom = bundle.getBoolean("needZoom");
         }else{
             url = "https://www.google.com";
         }

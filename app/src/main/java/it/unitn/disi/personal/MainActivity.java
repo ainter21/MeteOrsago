@@ -101,9 +101,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.info:
-                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+            case R.id.info_dev:
+                Intent intent = new Intent(MainActivity.this, DevInfoActivity.class);
                 startActivity(intent);
+                return true;
+            case R.id.info_app:
+                Intent intent1 = new Intent(MainActivity.this, AppInfoActivity.class);
+                startActivity(intent1);
                 return true;
 
         }
@@ -131,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_website:
 //                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://meteorsago.altervista.org/swpi/"));
 //                startActivity(browserIntent);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://meteorsago.altervista.org/swpi/")).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://meteorsago.altervista.org/swpi/", true)).commit();
                 break;
             case R.id.nav_rate_us:
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
@@ -145,10 +149,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_lightning:
 //                Intent lightningIntent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://it.blitzortung.org/live_dynamic_maps2.php?map=10"));
 //                startActivity(lightningIntent);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://map.blitzortung.org/#8.45/45.852/12.485")).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://map.blitzortung.org/#2.55/44.45/24.35", false)).commit();
                 break;
             case R.id.nav_protezione_civile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://www.centrometeo.com/situazione-tempo-reale/radar/4653-immagine-radar-protezione-civile")).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://www.protezionecivile.gov.it/attivita-rischi/meteo-idro/attivita/previsione-prevenzione/centro-funzionale-centrale-rischio-meteo-idrogeologico/monitoraggio-sorveglianza/mappa-radar", true)).commit();
 
 
         }

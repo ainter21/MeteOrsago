@@ -7,7 +7,7 @@
     <string name="press">Pressione</string>
     <string name="int_hum">Umidità interna</string>
     <string name="ext_hum">Umidità esterna</string>
-    <string name="daily_rain">Pioggia giornaliera</string>
+    <string name="daily_rain">Pioggia odierna</string>
     <string name="wind_temp">Temperatura del vento</string>
     <string name="hour_rain">Pioggia ultim\'ora</string>
     <string name="rug_temp">Temperatura rugiada</string>
@@ -31,4 +31,10 @@
     <string name="contact_me">Contattami</string>
     <string name="email">alberto.giust21@gmail.com</string>
     <string name="phone">+393425054003</string>
+    <string name="email_image">Image of an email</string>
+    <string name="image_phone">Image of a phone</string>
+    <string name="info_dev">Dev Info</string>
+    <string name="info_app">App Info</string>
+    <string name="version">Versione</string>
+    <string name="version_placeholder">1.0.0</string>
 </resources>

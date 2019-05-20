@@ -4,10 +4,16 @@
 
 
     <item
-        android:id="@+id/info"
+        android:id="@+id/info_dev"
         android:icon="@drawable/ic_info"
-        android:title="@string/info"
-        app:showAsAction="always">
+        android:title="@string/info_dev"
+        app:showAsAction="never">
 
+    </item>
+
+    <item android:title="@string/info_app"
+        android:id="@+id/info_app"
+        app:showAsAction="never">
+        
     </item>
 </menu>

@@ -172,7 +172,10 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
                     homeData.add(new HomeData(R.drawable.ic_rain,getResources().getString(R.string.daily_rain),
-                            String.format("%.1f", response.getDouble("rain_rate_24h")) + " mm"));
+                            String.format("%.2f", response.getDouble("rain_rate")) + " mm"));
+
+                    homeData.add(new HomeData(R.drawable.ic_rain1h, getResources().getString(R.string.hour_rain),
+                            String.format("%.2f", response.getDouble("rain_rate_1h")) + " mm"));
 
 
 
