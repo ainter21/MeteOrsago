@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import it.unitn.disi.personal.Utils.NetworkUtils;
+import it.unitn.disi.personal.fragments.ArpavFragment;
 import it.unitn.disi.personal.fragments.DataFragment;
 import it.unitn.disi.personal.fragments.HomeFragment;
 import it.unitn.disi.personal.fragments.WebPageFragment;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        //setto imageview sull headere della navigation view
+        //setto imageview sull header della navigation view
         View v = navigationView.getHeaderView(0);
         ImageView headerImageView = (ImageView) v.findViewById(R.id.iv_nav_header);
         Glide.with(this).load(R.drawable.slideshow1).into(headerImageView);
@@ -132,6 +133,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                Toast.makeText(this, String.valueOf(R.id.nav_webcam), Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WebcamFragment()).commit();
                 break;
+
+            case R.id.nav_forecast:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ArpavFragment()).commit();
+                break;
             case R.id.nav_website:
 //                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://meteorsago.altervista.org/swpi/"));
 //                startActivity(browserIntent);
@@ -149,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_lightning:
 //                Intent lightningIntent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://it.blitzortung.org/live_dynamic_maps2.php?map=10"));
 //                startActivity(lightningIntent);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://map.blitzortung.org/#2.55/44.45/24.35", false)).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://map.blitzortung.org/#6.35/45.649/11.766", false)).commit();
                 break;
             case R.id.nav_protezione_civile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WebPageFragment.newInstance("http://www.protezionecivile.gov.it/attivita-rischi/meteo-idro/attivita/previsione-prevenzione/centro-funzionale-centrale-rischio-meteo-idrogeologico/monitoraggio-sorveglianza/mappa-radar", true)).commit();

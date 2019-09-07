@@ -37,4 +37,7 @@
     <string name="info_app">App Info</string>
     <string name="version">Versione</string>
     <string name="version_placeholder">1.0.0</string>
+    <string name="forecast_image_content_description">Forecast Image</string>
+    <string name="date">Giorno 0</string>
+    <string name="forecast_time_placeholder">mattina</string>
 </resources>

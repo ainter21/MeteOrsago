@@ -13,9 +13,15 @@
             android:title="Dati Meteo Completi"
             ></item>
         <item
-            android:id="@+id/nav_webcam"
-            android:icon="@drawable/ic_webcam"
-            android:title="Webcam"
+        android:id="@+id/nav_webcam"
+        android:icon="@drawable/ic_webcam"
+        android:title="Webcam"
+        ></item>
+
+        <item
+            android:id="@+id/nav_forecast"
+            android:icon="@drawable/ic_forecast"
+            android:title="Previsioni"
             ></item>
 
 
